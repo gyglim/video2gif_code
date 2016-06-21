@@ -22,7 +22,7 @@ License: This dataset is licensed under BSD, see LICENSE file
 
 For information on how to use the dataset, please see our
 
-[Tutorial](video2gif/video2gif_demo.ipynb)
+[Tutorial](./video2gif_demo.ipynb)
 
 In order to run this tutorial, you need to install the video2gif package first by running
 ```
