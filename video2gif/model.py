@@ -1,3 +1,10 @@
+'''
+This module contains the model used in our paper
+ Michael Gygli, Yale Song, Liangliang Cao
+    "Video2GIF: Automatic Generation of Animated GIFs from Video," IEEE CVPR 2016
+'''
+__author__ = 'michaelgygli'
+
 from lasagne.layers.shape import PadLayer
 from lasagne.layers import InputLayer, DenseLayer
 try:
@@ -109,6 +116,13 @@ def build_model(input_var=None, batch_size=2, use_cpu_compatible = theano.config
 def set_weights(net,
                 c3d_weight_file,
                 video2gif_weight_file):
+    '''
+    set the weights of the given model. We combine C3D and the video2gif weights
+    @param net: a lasagne network
+    @param c3d_weight_file:
+    @param video2gif_weight_file:
+    @return:
+    '''
 
     # Get C3D weights
     with open(c3d_weight_file) as f:
