@@ -14,7 +14,7 @@ In order to run the tutorial, you will first need to install the video2gif packa
 
 in the code directory.
 
-If you don't have cuDNN available, you need to use the Lasagne fork that provides 3D convolutions and pooling implementations without cuDNN. You can get it from https://github.com/gyglim/Lasagne
+If you don't have cuDNN > 4.0 available, you need to use the Lasagne fork that provides 3D convolutions and pooling implementations without cuDNN. You can get it from https://github.com/gyglim/Lasagne
 
 
 ================================================================================
