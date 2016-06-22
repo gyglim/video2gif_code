@@ -9,10 +9,12 @@ For information on how to use the code, please see our [Tutorial](./video2gif_tu
 
 In order to run the tutorial, you will first need to install the video2gif package by running
 ```
-    python setup.py install
+    python setup.py install --user
 ```
 
 in the code directory.
+
+If you don't have cuDNN available, you need to use the Lasagne fork that provides 3D convolutions and pooling implementations without cuDNN. You can get it from https://github.com/gyglim/Lasagne
 
 
 ================================================================================
