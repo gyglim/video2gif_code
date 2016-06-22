@@ -20,7 +20,7 @@ License: This dataset is licensed under BSD, see LICENSE file
 
 ================================================================================
 
-For information on how to use the dataset, please see our
+For information on how to use the code, please see our
 
 [Tutorial](./video2gif_tutorial.ipynb)
 
