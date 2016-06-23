@@ -14,7 +14,7 @@ If you have any question regarding the dataset, please contact:
 
     Michael Gygli <gygli@vision.ee.ethz.ch>
 
-License: This dataset is licensed under BSD, see LICENSE file
+License: This dataset is licensed under GPL version 3, see LICENSE file
 
 ###Note: There is a patent pending on the ideas presented in this work so this code should only be used for academic purposes.
 
