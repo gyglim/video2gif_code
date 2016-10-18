@@ -175,3 +175,59 @@ def generate_gifs(out_dir, segment2scores, video, video_id, top_k=6, bottom_k=0)
         nr -= 1
 
     return good_gifs,bad_gifs
+
+
+def generate_gif_times(video, segment2scores, top_k=6, bottom_k=0):
+    '''
+    @param out_dir: directory where the GIFs are written to
+    @param segment2scores: a dict with segments (start frame, end frame) as keys and the segment score as value
+    @param video: a VideoFileClip object
+    @param video_id: the identifier of the video (used for naming the GIFs)
+    @return:
+    '''
+    segment2scores = segment2scores.copy()
+    print("found segscors", len(segment2scores))
+
+    nr=0
+    top_k=min(top_k, len(segment2scores))
+    good_gifs=[]
+    for segment in sorted(segment2scores, key=lambda x: -segment2scores.get(x))[0:top_k]:
+        good_gifs.append((segment[0]/float(video.fps), segment[1]/float(video.fps),))
+        nr += 1
+
+    bottom_k=min(bottom_k, len(segment2scores))
+    bad_gifs=[]
+    nr=len(segment2scores)
+    for segment in sorted(segment2scores, key=segment2scores.get)[0:bottom_k]:
+        bad_gifs.append((segment[0]/float(video.fps), segment[1]/float(video.fps),))
+        nr -= 1
+    return good_gifs,bad_gifs
+
+
+# Define function
+def get_scored_segments( video_path, duration = 3, top_k = 5, bottom_k = 0 ):
+    '''
+    @param video_path: video to run gif segment scoring on
+    @param duration: duration of segments
+    @param top_k: count of top gifs to return
+    @param bottom_k: count of bottom gifs to return
+    @return: (good_gifs, bad_gifs)
+    '''
+
+    # Get scoring function
+    score_function = video2gif.get_prediction_function()
+
+    # Take the example video
+    video = VideoFileClip(video_path)
+
+    # Build the segments
+    segments = [(start, int(start+video.fps*duration)) for start in range(0,int(video.duration*video.fps),int(video.fps*duration))]
+
+    # Score the segments
+    scores=video2gif.get_scores(score_function, segments, video, stride=8)
+
+    # Generate GIFs from the top scoring segments
+    good_gifs,bad_gifs = video2gif.generate_gif_times(video, scores, top_k, bottom_k)
+
+    # Return the good and bad gifs
+    return good_gifs, bad_gifs
