@@ -1,6 +1,7 @@
 # Import needed modules
 import video2gif
 import optparse
+import json
 from moviepy.editor import VideoFileClip
 
 def parser():
@@ -14,7 +15,7 @@ def parser():
 def main():
     args, opts = parser()
     scored_segments = get_scored_segments(args.video, args.duration, args.top, args.bottom)
-    print(scored_segments)
+    print(json.dumps(scored_segments, indent=4))
 
 if __name__ == "__main__":
     main()
